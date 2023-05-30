@@ -42,10 +42,15 @@ class DataPage: UIViewController{
         return btn
     }()
     
+    @objc func actionForButton(){
+        navigationController?.present(ViewController(), animated: true)
+    }
+    
     func setup(){
         view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
+        navigationItem.hidesBackButton = true
         
+        btn.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         if(List.isEmpty){
             
             view.addSubview(topText)

@@ -35,13 +35,16 @@ class WelcomePage: UIViewController{
         return btn
     }()
     
+    @objc func actionForButton(){
+        navigationController?.pushViewController(DataPage(), animated: true)
+    }
+    
     func setup(){
         view.addSubview(img)
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         view.addSubview(btn)
         setBtn(btn: btn, view: view)
+        btn.addTarget(self, action: #selector(actionForButton), for: .touchUpInside)
         
         view.addSubview(text)
         text.translatesAutoresizingMaskIntoConstraints = false
