@@ -109,4 +109,43 @@ extension DataPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: DataPage.List[indexPath.row].url) {
+            print("link is tapped")
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    func delete(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction {
+
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, _) in
+            guard let self = self else { return }
+            DataPage.List.remove(at: indexPath.row)
+            Storage.ListData.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadData()
+        }
+        return action
+    }
+    
+
+    func edit(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Change") { [weak self] (_, _, _) in
+            guard let self = self else { return }
+            print("number of index is \(indexPath.row)")
+            
+            self.tableView.reloadData()
+        }
+        action.backgroundColor = .systemBlue
+        return action
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = self.delete(rowIndexPathAt: indexPath)
+        let edit = self.edit(rowIndexPathAt: indexPath)
+        let swipe = UISwipeActionsConfiguration(actions: [delete, edit])
+        return swipe
+    }
 }
