@@ -36,7 +36,7 @@ class WelcomePage: UIViewController{
     }()
     
     @objc func actionForButton(){
-        navigationController?.pushViewController(DataPage(), animated: true)
+        navigationController?.pushViewController( DataPage(), animated: true)
     }
     
     func setup(){

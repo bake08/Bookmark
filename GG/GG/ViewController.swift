@@ -20,15 +20,29 @@ class ViewController: UIViewController {
     var TF2 = UITextField()
     
     private func setup(){
-        view.backgroundColor = .white
+        
+        self.view.backgroundColor = UIColor.white.withAlphaComponent(0)
+
+        
+        let backG = UIView()
+        backG.layer.cornerRadius = 12
+        backG.backgroundColor = .white
+        view.addSubview(backG)
+        backG.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(400)
+            make.width.equalToSuperview()
+        }
+        
+        
         TF1 = textField(hindText: "Bookmark title")
         TF2 = textField(hindText: "Bookmark link (URL)")
         
-        view.addSubview(TF1)
-        view.addSubview(TF2)
+        backG.addSubview(TF1)
+        backG.addSubview(TF2)
         
         let title = textTitle(text: "Title")
-        view.addSubview(title)
+        backG.addSubview(title)
         
         title.snp.makeConstraints { make in
             make.bottom.equalTo(TF1.snp.top).offset(-16)
@@ -36,7 +50,7 @@ class ViewController: UIViewController {
         }
         
         let lnk = textTitle(text: "Link")
-        view.addSubview(lnk)
+        backG.addSubview(lnk)
         lnk.snp.makeConstraints { make in
             make.top.equalTo(TF1.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(18)
@@ -46,12 +60,48 @@ class ViewController: UIViewController {
         setTF(tf: TF2)
         
         TF1.snp.makeConstraints { make in
-            make.top.equalTo(view.center)
+            make.top.equalTo(backG.center).offset(100)
             
         }
         
         TF2.snp.makeConstraints { make in
             make.top.equalTo(lnk.snp.bottom).offset(16)
+        }
+        
+        
+        backG.addSubview(closeBtn)
+        closeBtn.snp.makeConstraints { make in
+            make.bottom.equalTo(title.snp.top).offset(-22)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        let btn = btn(text: "Save", color: "black")
+        backG.addSubview(btn)
+        btn.addTarget(self, action: #selector(addData), for: .touchUpInside)
+        setBtn(btn: btn, view: backG)
+        
+        closeBtn.addTarget(self, action: #selector(action), for: .touchUpInside)
+    }
+    
+    private var closeBtn: UIButton = {
+        let btn = UIButton()
+        btn.setTitleColor(.black, for: .normal)
+        btn.setTitle("x", for: .normal)
+        return btn
+    }()
+    
+     @objc func action(){
+         dismiss(animated: true)
+     }
+        
+    var delegate = DataPage()
+    
+    @objc private func addData(){
+        let title: String = TF1.text ?? ""
+        let url: String = TF2.text ?? ""
+        if(title != "" && url != ""){
+            delegate.addData(title: title, url: url)
+            dismiss(animated: true)
         }
         
     }
