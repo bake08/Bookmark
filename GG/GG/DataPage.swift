@@ -8,10 +8,12 @@ class DataPage: UIViewController {
         return tableView
     }()
     
-    static var List = [Data]()
+    static var List: [Data] = Storage.ListData
+    
     
     func addData(title: String, url: String) {
         DataPage.List.append(Data(title: title, url: url))
+        Storage.ListData.append(Data(title: title, url: url))
         tableView.reloadData()
         print(DataPage.List)
     }

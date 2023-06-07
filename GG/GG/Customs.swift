@@ -34,7 +34,7 @@ func setBtn(btn: UIButton, view: UIView){
 }
 
 
-struct Data{
+struct Data: Decodable, Encodable{
     let title: String
     let url: String
 }

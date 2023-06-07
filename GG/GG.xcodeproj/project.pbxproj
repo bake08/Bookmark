@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B72F4CA2A30B8C200C70370 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B72F4C92A30B8C200C70370 /* AppStorage.swift */; };
 		8BCADDA12A17F19900313A3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCADDA02A17F19900313A3A /* AppDelegate.swift */; };
 		8BCADDA52A17F19900313A3A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCADDA42A17F19900313A3A /* ViewController.swift */; };
 		8BCADDAA2A17F19A00313A3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BCADDA92A17F19A00313A3A /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B72F4C92A30B8C200C70370 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
 		8BCADD9D2A17F19900313A3A /* GG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BCADDA02A17F19900313A3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BCADDA42A17F19900313A3A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				8BCADDA02A17F19900313A3A /* AppDelegate.swift */,
+				8B72F4C92A30B8C200C70370 /* AppStorage.swift */,
 				8BCADDA42A17F19900313A3A /* ViewController.swift */,
 				8BFC0CB12A1915A200226A95 /* WelcomePage.swift */,
 				8BFC0CB52A19348F00226A95 /* DataPage.swift */,
@@ -151,6 +154,7 @@
 				8BFC0CB22A1915A200226A95 /* WelcomePage.swift in Sources */,
 				8BCADDA52A17F19900313A3A /* ViewController.swift in Sources */,
 				8BFC0CB42A19172200226A95 /* Customs.swift in Sources */,
+				8B72F4CA2A30B8C200C70370 /* AppStorage.swift in Sources */,
 				8BCADDA12A17F19900313A3A /* AppDelegate.swift in Sources */,
 				8BFC0CB62A19348F00226A95 /* DataPage.swift in Sources */,
 			);
