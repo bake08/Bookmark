@@ -7,22 +7,20 @@
 
 import UIKit
 import SnapKit
-
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-           
+        
         setup()
     }
     
     var TF1 = UITextField()
     var TF2 = UITextField()
     
-    private func setup(){
+    private func setup() {
         
         self.view.backgroundColor = UIColor.white.withAlphaComponent(0)
-
         
         let backG = UIView()
         backG.layer.cornerRadius = 12
@@ -33,7 +31,6 @@ class ViewController: UIViewController {
             make.height.equalTo(400)
             make.width.equalToSuperview()
         }
-        
         
         TF1 = textField(hindText: "Bookmark title")
         TF2 = textField(hindText: "Bookmark link (URL)")
@@ -68,7 +65,6 @@ class ViewController: UIViewController {
             make.top.equalTo(lnk.snp.bottom).offset(16)
         }
         
-        
         backG.addSubview(closeBtn)
         closeBtn.snp.makeConstraints { make in
             make.bottom.equalTo(title.snp.top).offset(-22)
@@ -90,32 +86,30 @@ class ViewController: UIViewController {
         return btn
     }()
     
-     @objc func action(){
-         dismiss(animated: true)
-     }
-        
+    @objc func action() {
+        dismiss(animated: true)
+    }
+    
     var delegate = DataPage()
     
-    @objc private func addData(){
+    @objc private func addData() {
         let title: String = TF1.text ?? ""
         let url: String = TF2.text ?? ""
-        if(title != "" && url != ""){
+        if title != "" && url != "" {
             delegate.addData(title: title, url: url)
             dismiss(animated: true)
         }
-        
     }
     
-    func textTitle(text: String) -> UILabel{
+    func textTitle(text: String) -> UILabel {
         let t = UILabel()
         t.text = text
         t.textAlignment = .center
         t.textColor = .black
         return t
     }
-
     
-    private func setTF(tf : UITextField){
+    private func setTF(tf: UITextField) {
         tf.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -123,15 +117,14 @@ class ViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
-   
-    private func textField(hindText: String) -> UITextField{
+    
+    private func textField(hindText: String) -> UITextField {
         let t = TextFieldWithPadding()
         t.placeholder = hindText
         t.backgroundColor = UIColor(red: 0.949, green: 0.949, blue: 0.933, alpha: 1)
         t.layer.cornerRadius = 16
         return t
     }
-    
 }
 
 class TextFieldWithPadding: UITextField {
@@ -152,4 +145,3 @@ class TextFieldWithPadding: UITextField {
         return rect.inset(by: textPadding)
     }
 }
-

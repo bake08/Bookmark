@@ -72,16 +72,21 @@ class MyTableView: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
 }
 
-
 class PostCell: UITableViewCell {
-    private let nameLabel: UILabel = {
+    
+    let contrView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
     }()
-
-    private let url: UILabel = {
+    
+    let url: UILabel = {
         let label = UILabel()
         label.textColor = .orange
         label.font = .systemFont(ofSize: 16, weight: .regular)
@@ -89,35 +94,42 @@ class PostCell: UITableViewCell {
     }()
     
     private let btn: UIButton = {
-       let btn = UIButton()
+        let btn = UIButton()
         btn.setImage(UIImage(systemName: "arrowshape.turn.up.right.circle"), for: .normal)
         btn.tintColor = .black
         return btn
     }()
-
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     public func configureView(post: Data) {
-        self.nameLabel.text = post.title
-        self.url.text = post.url
+        nameLabel.text = post.title
+        url.text = post.url
     }
-
+    
     private func setUI() {
-
-        [nameLabel, btn].forEach { self.addSubview($0) }
-
+        self.addSubview(contrView)
+        
+        contrView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
+            make.bottom.equalToSuperview().offset(-2)
+            make.top.equalToSuperview().offset(1)
+        }
+        
+        contrView.addSubview(btn)
+        contrView.addSubview(nameLabel)
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.self.equalToSuperview().offset(16)
-            make.centerY.self.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
         }
         
         btn.imageView?.snp.makeConstraints({ make in
@@ -125,14 +137,11 @@ class PostCell: UITableViewCell {
         })
         
         btn.snp.makeConstraints { make in
-            make.centerY.self.equalToSuperview()
-            make.trailing.self.equalToSuperview().offset(-26)
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-26)
         }
-
-        
     }
 }
-
 
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor? = nil,
